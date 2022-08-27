@@ -9,28 +9,22 @@ page = requests.get(url)
 if(page.status_code != 200): 
     pass
 soup = BeautifulSoup(page.content,'html.parser')
+soup = soup.section
 
 # categories
-soup = soup.section
 categories = soup.find_all('div',class_='Categories-item')
 for i, category in enumerate(categories):
-    titulo = category.find('span').getText()
-    print(titulo)
+    categoryName = category.find('span').getText()
+    print(categoryName)
 
+# schools
+schools = soup.find_all('div',class_='School')
+for i, school in enumerate(schools):
+    schoolName = school.find('h3').getText()
+    print(schoolName)
 
-
-#soup = soup.attrs
-#print(soup['id'])
-#print(soup.next_sibling['id'])
-#print(soup['id'])
-
-
-
-
-#schoolsRaw = soup.find_all('h3')
-#schools = list()
-#for schoolRaw in schoolsRaw:  
-#    schools.append(schoolRaw.text)
-#print(schools)
-
-
+# courses
+courses = soup.find_all('a',class_='Course')
+for i, course in enumerate(courses):
+    courseName = course.find('h4').getText()
+    print(courseName)
