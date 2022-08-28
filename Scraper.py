@@ -15,16 +15,16 @@ soup = soup.section
 categories = soup.find_all('div',class_='Categories-item')
 for i, category in enumerate(categories):
     categoryName = category.find('span').getText()
-    print(categoryName)
+    print(str(i+1) + '. ' + categoryName)
 
-# schools
-schools = soup.find_all('div',class_='School')
-for i, school in enumerate(schools):
-    schoolName = school.find('h3').getText()
-    print(schoolName)
+    # schools
+    schools = category.find_all('div',class_='School')
+    for j, school in enumerate(schools):
+        schoolName = school.find('h3').getText()   
+        print("  " + str(i+1) + '.' + str(j+1) + '. ' + schoolName)
 
-# courses
-courses = soup.find_all('a',class_='Course')
-for i, course in enumerate(courses):
-    courseName = course.find('h4').getText()
-    print(courseName)
+        # courses
+        courses = school.find_all('a',class_='Course')
+        for k, course in enumerate(courses):
+            courseName = course.find('h4').getText()
+            print("    " + str(i+1) + '.' + str(j+1) + '.' + str(k+1) + '. ' + courseName)
