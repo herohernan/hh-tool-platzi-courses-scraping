@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 import requests
 import pandas 
+from datetime import date
 
 # Get the html content from a URL 
 url = 'https://platzi.com/cursos/'
@@ -48,4 +49,6 @@ pandaDF = pandas.DataFrame({'category':categoryList,
                             'courses':courseList},
                             index=list(range(0,NumberOfCoursesFound)))
 
-pandaDF.to_csv(r'ListOf_PlatziCourses.csv')
+todayDate = date.today()
+fileName = 'ListOf_PlatziCourses_' + str(todayDate) + '.csv'
+pandaDF.to_csv(fileName)
